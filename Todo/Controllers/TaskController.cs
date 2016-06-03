@@ -10,7 +10,7 @@ namespace Todo.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(Tasks);
         }
 
         public static readonly List<string> Tasks = new List<string>();
