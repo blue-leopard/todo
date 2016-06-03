@@ -10,3 +10,20 @@
         <input type="text" class="input-lg col-xs-12" name="task" autofocus />
     </form>
 </div>
+
+<h3>@Model.Count() Task(s)</h3>
+<table class="table">
+    <tr>
+        <th>Description</th>
+    </tr>
+    <tbody>
+    @foreach (var task in Model)
+    {
+        <tr>
+            <td>
+                @task
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
