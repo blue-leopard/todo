@@ -13,18 +13,13 @@ namespace Todo.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public static readonly List<string> Tasks = new List<string>();
+
+        [HttpPost]
+        public ActionResult Add(string task)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            Tasks.Add(task);
+            return RedirectToAction("Index");
         }
     }
 }
