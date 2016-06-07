@@ -19,7 +19,7 @@ namespace Todo.Controllers
         [HttpPost]
         public ActionResult Add(string task)
         {
-            var taskItem = new Task(task);
+            var taskItem = new Task(task, DateTime.Today);
             Tasks.Add(taskItem);
             return RedirectToAction("Index");
         }
@@ -27,7 +27,7 @@ namespace Todo.Controllers
 
     public class Task
     {
-        public Task(string task)
+        public Task(string task, DateTime today)
         {
             Description = task;
 
@@ -38,7 +38,11 @@ namespace Todo.Controllers
             {
                 var dueDate = dueDatePattern.Match(task);
                 var day = Convert.ToInt32(dueDate.Groups[1].Value);
-                DueDate = new DateTime(DateTime.Today.Year, 5, day);
+                DueDate = new DateTime(today.Year, 5, day);
+                if (DueDate < today)
+                {
+                    DueDate = DueDate.Value.AddYears(1);
+                }
             }
         }
         public string Description { get; set; }
